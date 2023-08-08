@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../router/go_router_provider.dart';
 import '../router/router_names.dart';
 
 final acceptedImage = Provider<String>((ref) => 'a5');
-
 final checkerProvider = ChangeNotifierProvider.autoDispose<CheckerProvider>(
     (ref) => CheckerProvider(ref));
 //-----------------------------------------------------------------------------------------------------
