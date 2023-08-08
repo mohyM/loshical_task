@@ -49,40 +49,44 @@ class _BodyState extends State<Body> {
                       (e) => e.contains('q2')
                           ? // building Drag Target Widget
                           Consumer(
-                              builder: (context, ref, child) =>
-                                  DragTarget<String>(
-                                onAccept: (String data) {
-                                  ref.watch(checkerProvider).onAccept(data);
-                                },
-                                onLeave: (data) {
-                                  ref.watch(checkerProvider).clearChecker();
-                                },
-                                onWillAccept: (data) {
-                                  return true;
-                                },
-                                onMove: (DragTargetDetails<String> data) {
-                                  print('onAccept move ${data.data}');
-                                  ref.watch(checkerProvider).onMove(data.data);
-                                },
-                                builder: (
-                                  BuildContext context,
-                                  List<dynamic> accepted,
-                                  List<dynamic> rejected,
-                                ) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: ref
-                                            .watch(checkerProvider)
-                                            .userChoiceColor,
+                              builder: (context, ref, child) {
+                                var checkerViewModel =
+                                    ref.read(checkerProvider);
+                                return DragTarget<String>(
+                                  onAccept: (String data) {
+                                    checkerViewModel.onAccept(data);
+                                  },
+                                  onLeave: (data) {
+                                    checkerViewModel.clearChecker();
+                                  },
+                                  onWillAccept: (data) {
+                                    return true;
+                                  },
+                                  onMove: (DragTargetDetails<String> data) {
+                                    print('onAccept move ${data.data}');
+                                    checkerViewModel.onMove(data.data);
+                                  },
+                                  builder: (
+                                    BuildContext context,
+                                    List<dynamic> accepted,
+                                    List<dynamic> rejected,
+                                  ) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 2,
+                                          color: ref
+                                              .watch(checkerProvider)
+                                              .userChoiceColor,
+                                        ),
                                       ),
-                                    ),
-                                    child: QuestionImage(
-                                      assetPath: e,
-                                    ),
-                                  );
-                                },
-                              ),
+                                      child: QuestionImage(
+                                        assetPath: e,
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
                             )
                           : QuestionImage(
                               assetPath: e,
