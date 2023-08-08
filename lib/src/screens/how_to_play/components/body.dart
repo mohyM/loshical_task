@@ -8,29 +8,24 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('How to play'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(32),
-              child: Text('Double click on the instructions to zoom'),
-            ),
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height,
-              width: MediaQuery.sizeOf(context).width,
-              child: PhotoView(
-                enablePanAlways: true,
-                imageProvider: const AssetImage(
-                  AssetManager.howto,
-                ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(32),
+            child: Text('Double click on the instructions to zoom'),
+          ),
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height,
+            width: MediaQuery.sizeOf(context).width,
+            child: PhotoView(
+              enablePanAlways: true,
+              imageProvider: const AssetImage(
+                AssetManager.howto,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
